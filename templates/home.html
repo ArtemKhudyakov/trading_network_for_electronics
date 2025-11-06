@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% block title %}Главная - To Ze Moon{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Hero Section -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold mb-3" style="background: linear-gradient(45deg, #007bff, #00C853); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+            🚀 To Ze Moon
+        </h1>
+        <h2 class="h3 text-warning mb-3">ТуЗеМун - Анализ крипторынка</h2>
+        <p class="lead text-light">Продвинутый анализ движения цен ETH/BTC с определением собственной динамики</p>
+    </div>
+
+    <!-- Main Action Card -->
+    <div class="card border-0 shadow-lg mb-5" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #1a1a2e 100%); border: 2px solid #00C853 !important; position: relative; overflow: hidden;">
+    <!-- Анимированный фон -->
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at center, rgba(0, 200, 83, 0.1) 0%, transparent 70%);"></div>
+    
+    <div class="card-body p-5 text-center" style="position: relative; z-index: 2;">
+        <!-- Большая анимированная ракета -->
+        <div class="mb-4" style="animation: float 3s ease-in-out infinite;">
+            <div style="font-size: 5rem; margin-bottom: 1rem; filter: drop-shadow(0 0 10px rgba(0, 200, 83, 0.5));">🚀</div>
+        </div>
+        
+        <!-- Главный заголовок -->
+        <h2 class="card-title mb-3 display-4 fw-bold text-white" 
+            style="text-shadow: 0 0 20px rgba(0, 200, 83, 0.7), 0 0 30px rgba(0, 123, 255, 0.5);">
+            ЗАПУСТИТЕ РЕАЛЬНЫЙ АНАЛИЗ КРИПТОРЫНКА
+        </h2>
+        
+        <!-- Подзаголовок -->
+        <p class="card-text mb-4 text-light fs-4">
+            <strong>To the moon! 🚀🌙</strong>
+        </p>
+        
+        <p class="card-text mb-4 text-light fs-5">
+            Автоматическое отслеживание ETH/BTC в реальном времени<br>
+            <strong class="text-warning">Анализ собственного движения + автообновление графиков</strong>
+        </p>
+        
+        <!-- Кнопки действий -->
+        <div class="d-flex justify-content-center gap-4 flex-wrap mt-4">
+            <a href="#" class="btn btn-success btn-lg px-5 py-3 fw-bold fs-4" 
+               style="background: linear-gradient(45deg, #00C853, #007bff); border: none; box-shadow: 0 6px 20px rgba(0, 200, 83, 0.4); min-width: 250px;">
+                🚀 ЗАПУСТИТЬ СКРИНЕР
+            </a>
+            
+            {% if not user.is_authenticated %}
+            <div class="d-flex gap-3 flex-wrap justify-content-center">
+                <a href="{% url 'users:register' %}" class="btn btn-primary btn-lg px-4 py-3 fw-bold fs-5">
+                    📝 РЕГИСТРАЦИЯ
+                </a>
+                <a href="{% url 'users:login' %}" class="btn btn-outline-light btn-lg px-4 py-3 fw-bold fs-5">
+                    🔑 ВХОД
+                </a>
+            </div>
+            {% endif %}
+        </div>
+        
+        <!-- Дополнительная информация -->
+        <div class="mt-5 pt-3 border-top border-success">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="text-success">
+                        <strong>📈 Real-time</strong>
+                        <div class="text-light small">Данные каждые 2 сек</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-warning">
+                        <strong>🎯 Анализ ETH/BTC</strong>
+                        <div class="text-light small">Собственное движение</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-info">
+                        <strong>⚡ Автообновление</strong>
+                        <div class="text-light small">Графики каждые 10 сек</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+</style>
+    <!-- Features Grid -->
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 border-0" style="background: #1a1a2e;">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3" style="font-size: 2.5rem;">📊</div>
+                    <h5 class="card-title text-success">Реальный анализ</h5>
+                    <p class="card-text text-light">Актуальные данные с Bybit API, обновление каждые 2 секунды</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0" style="background: #1a1a2e;">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3" style="font-size: 2.5rem;">🎯</div>
+                    <h5 class="card-title text-warning">Собственное движение</h5>
+                    <p class="card-text text-light">Определение когда ETH движется независимо от BTC</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0" style="background: #1a1a2e;">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3" style="font-size: 2.5rem;">⚡</div>
+                    <h5 class="card-title text-info">Автообновление</h5>
+                    <p class="card-text text-light">Графики обновляются автоматически каждые 10 секунд</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Info -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card border-0" style="background: #1a1a2e;">
+                <div class="card-body text-center">
+                    <h4 class="mb-3">💡 Как это работает?</h4>
+                    <p class="text-light mb-3">
+                        Наш алгоритм анализирует исторические данные и определяет, насколько движение ETH<br>
+                        обусловлено собственными факторами, а не просто следует за BTC
+                    </p>
+                    <div class="d-flex justify-content-center gap-4 flex-wrap">
+                        <span class="badge bg-success">Spot цены</span>
+                        <span class="badge bg-warning">Futures цены</span>
+                        <span class="badge bg-info">Базис анализ</span>
+                        <span class="badge bg-primary">Линейная регрессия</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

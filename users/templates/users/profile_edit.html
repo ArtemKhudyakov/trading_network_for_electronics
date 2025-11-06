@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card border-0 shadow-lg" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border: 1px solid #007bff !important;">
+            <div class="card-body p-5">
+                <div class="text-center mb-4">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">👤</div>
+                    <h2 class="text-white mb-2">Редактирование профиля</h2>
+                    <p class="text-light">Настройте вашу учетную запись To Ze Moon</p>
+                </div>
+
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <div class="card border-0" style="background: #2d2d44;">
+                                <div class="card-body">
+                                    <label for="id_avatar" class="d-block mb-3 cursor-pointer">
+                                        <img id="avatar-preview"
+                                             src="{% if form.instance.avatar %}{{ form.instance.avatar.url }}{% else %}{% static 'img/default-avatar.png' %}{% endif %}"
+                                             class="img-thumbnail rounded-circle avatar-preview"
+                                             style="width: 150px; height: 150px; object-fit: cover;">
+                                        <div class="mt-3">
+                                            <span class="badge bg-primary">Изменить фото</span>
+                                        </div>
+                                    </label>
+                                    {{ form.avatar }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="id_first_name" class="form-label text-light">Имя</label>
+                                    <input type="text" name="first_name" class="form-control" id="id_first_name"
+                                           value="{{ form.instance.first_name }}" style="background: #2d2d44; border: 1px solid #444; color: white;">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="id_last_name" class="form-label text-light">Фамилия</label>
+                                    <input type="text" name="last_name" class="form-control" id="id_last_name"
+                                           value="{{ form.instance.last_name }}" style="background: #2d2d44; border: 1px solid #444; color: white;">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="id_email" class="form-label text-light">Email</label>
+                                <input type="email" name="email" class="form-control" id="id_email"
+                                       value="{{ form.instance.email }}" style="background: #2d2d44; border: 1px solid #444; color: white;">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="id_phone" class="form-label text-light">Телефон</label>
+                                <input type="tel" name="phone" class="form-control" id="id_phone"
+                                       value="{{ form.instance.phone }}" style="background: #2d2d44; border: 1px solid #444; color: white;">
+                            </div>
+
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                                <a href="/" class="btn btn-secondary me-2">Отмена</a>
+                                <button type="submit" class="btn btn-success px-4"
+                                        style="background: linear-gradient(45deg, #00C853, #007bff); border: none;">
+                                    Сохранить изменения
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const avatarInput = document.getElementById('id_avatar');
+    const avatarPreview = document.getElementById('avatar-preview');
+
+    if (avatarInput && avatarPreview) {
+        avatarInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('Файл слишком большой. Максимальный размер 5MB.');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    avatarPreview.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+});
+</script>
+
+<style>
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+    .form-control {
+        background: #2d2d44 !important;
+        border: 1px solid #444 !important;
+        color: white !important;
+    }
+
+    .form-control:focus {
+        background: #2d2d44 !important;
+        border-color: #007bff !important;
+        color: white !important;
+    }
+</style>
+{% endblock %}

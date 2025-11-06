@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card border-0 shadow-lg" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border: 1px solid #007bff !important;">
+            <div class="card-body p-5">
+                <div class="text-center mb-4">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🚀</div>
+                    <h2 class="card-title text-white mb-2">Вход в To Ze Moon</h2>
+                    <p class="text-light">Анализ крипторынка в реальном времени</p>
+                </div>
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label for="id_username" class="form-label text-light">Email</label>
+                        <input type="email" name="username" class="form-control" id="id_username"
+                               placeholder="your@email.com" required style="background: #2d2d44; border: 1px solid #444; color: white;">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="id_password" class="form-label text-light">Пароль</label>
+                        <input type="password" name="password" class="form-control" id="id_password"
+                               placeholder="••••••••" required style="background: #2d2d44; border: 1px solid #444; color: white;">
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100 py-2 fw-bold"
+                            style="background: linear-gradient(45deg, #00C853, #007bff); border: none;">
+                        ВОЙТИ В СИСТЕМУ
+                    </button>
+
+                    <div class="text-center mt-4">
+                        <a href="{% url 'users:register' %}" class="text-warning text-decoration-none">
+                            Нет аккаунта? Зарегистрируйтесь
+                        </a>
+                    </div>
+
+                    <div class="text-center mt-2">
+                        <a href="{% url 'users:password_reset' %}" class="text-info text-decoration-none">
+                            Забыли пароль?
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Информационные карточки -->
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card border-0 text-center" style="background: #1a1a2e;">
+                    <div class="card-body py-3">
+                        <div class="text-success mb-2">📈</div>
+                        <small class="text-light">Real-time данные</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 text-center" style="background: #1a1a2e;">
+                    <div class="card-body py-3">
+                        <div class="text-warning mb-2">🚀</div>
+                        <small class="text-light">Анализ ETH/BTC</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 text-center" style="background: #1a1a2e;">
+                    <div class="card-body py-3">
+                        <div class="text-info mb-2">⚡</div>
+                        <small class="text-light">Автообновление</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-control::placeholder {
+        color: #888;
+    }
+
+    .card {
+        transition: transform 0.2s;
+    }
+
+    .card:hover {
+        transform: translateY(-2px);
+    }
+</style>
+{% endblock %}

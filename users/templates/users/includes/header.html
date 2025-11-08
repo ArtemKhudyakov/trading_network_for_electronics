@@ -11,19 +11,35 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Главная</a>
+                    <a class="nav-link" href="/">🏠 Главная</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/trading/api/network-nodes/">🏪 Магазины</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/trading/api/products/">📦 Продукты</a>
+
+                <!-- 🔽 ДОБАВЛЯЕМ ССЫЛКИ НА ДОКУМЕНТАЦИЮ -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        📚 Документация
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li>
+                            <a class="dropdown-item" href="/swagger/">
+                                🐍 Swagger UI
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/redoc/">
+                                📖 ReDoc
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/api-docs/">
+                                📋 Руководство API
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'users:profile_edit' %}">👤 Профиль</a>
-                    </li>
-                {% endif %}
             </ul>
 
             <ul class="navbar-nav">
@@ -35,12 +51,19 @@
                                 <span class="badge bg-warning">Staff</span>
                             {% endif %}
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu dropdown-menu-dark">
                             <li>
                                 <a class="dropdown-item" href="{% url 'users:profile_edit' %}">
                                     ⚙️ Мой профиль
                                 </a>
                             </li>
+                            {% if user.organization %}
+                            <li>
+                                <a class="dropdown-item" href="/trading/api/network-nodes/{{ user.organization.id }}/">
+                                    🏢 Моя организация
+                                </a>
+                            </li>
+                            {% endif %}
                             {% if user.role == 'manager' or user.is_staff %}
                                 <li>
                                     <a class="dropdown-item" href="{% url 'users:user_list' %}">
@@ -53,7 +76,9 @@
                                     </a>
                                 </li>
                             {% endif %}
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li>
                                 <form method="post" action="{% url 'users:logout' %}">
                                     {% csrf_token %}

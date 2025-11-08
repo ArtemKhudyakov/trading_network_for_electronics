@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
     'phonenumber_field',
+    'drf_yasg',
     'users',
     'trading_network',
 ]
@@ -113,17 +114,13 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework_simplejwt.authentication.JWTAuthentication",
         "rest_framework.authentication.SessionAuthentication",
-        "rest_framework.authentication.TokenAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
     ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 5,
-    "DEFAULT_RENDERER_CLASSES": [
-        "rest_framework.renderers.JSONRenderer",
-        "rest_framework.renderers.BrowsableAPIRenderer",
-    ],
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
 }
 
 # Internationalization
@@ -227,22 +224,24 @@ CORS_ALLOW_HEADERS += [
 ]
 
 SWAGGER_SETTINGS = {
-    "SECURITY_DEFINITIONS": {
-        "Bearer": {
-            "type": "apiKey",
-            "name": "Authorization",
-            "in": "header",
-            "description": "JWT токен в формате: Bearer <token>",
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+            'description': 'JWT токен в формате: Bearer <token>'
         }
     },
-    "USE_SESSION_AUTH": False,
-    "JSON_EDITOR": True,
-    "DEFAULT_INFO": "config.urls.schema_view.info",
+    'USE_SESSION_AUTH': False,
+    'JSON_EDITOR': True,
+    'DEFAULT_INFO': 'config.urls.schema_view.info',
 }
 
+# Настройки Redoc
 REDOC_SETTINGS = {
-    "LAZY_RENDERING": False,
-    "HIDE_HOSTNAME": False,
+    'LAZY_RENDERING': False,
+    'HIDE_HOSTNAME': False,
+    'EXPAND_RESPONSES': ['200', '201'],
 }
 
 if os.environ.get('DOCKER_ENV'):

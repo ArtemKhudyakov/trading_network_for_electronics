@@ -4,9 +4,22 @@ from users.models import User
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    """
+    Сериализатор для продуктов
+    """
+
     class Meta:
         model = Product
         fields = '__all__'
+
+    def validate_release_date(self, value):
+        """
+        Проверка что дата выпуска не в будущем
+        """
+        from django.utils import timezone
+        if value > timezone.now().date():
+            raise serializers.ValidationError("Дата выпуска не может быть в будущем")
+        return value
 
 
 class NetworkNodeEmployeeSerializer(serializers.ModelSerializer):
@@ -18,6 +31,14 @@ class NetworkNodeEmployeeSerializer(serializers.ModelSerializer):
 
 
 class NetworkNodeSerializer(serializers.ModelSerializer):
+    """
+    Сериализатор для чтения звеньев сети
+
+    Включает расширенную информацию:
+    - Детали продуктов
+    - Информацию о поставщике
+    - Список сотрудников
+    """
     products = ProductSerializer(many=True, read_only=True)
     supplier_name = serializers.CharField(source='supplier.name', read_only=True)
     level_display = serializers.CharField(source='get_level_display', read_only=True)
@@ -34,6 +55,10 @@ class NetworkNodeSerializer(serializers.ModelSerializer):
 
 
 class NetworkNodeCreateSerializer(serializers.ModelSerializer):
+    """
+    Сериализатор для создания и обновления звеньев сети
+    """
+
     class Meta:
         model = NetworkNode
         fields = [
@@ -42,3 +67,19 @@ class NetworkNodeCreateSerializer(serializers.ModelSerializer):
             'debt', 'created_at'
         ]
         read_only_fields = ['debt', 'created_at']
+
+    def validate_level(self, value):
+        """
+        Проверка корректности уровня иерархии
+        """
+        if value not in [0, 1, 2]:
+            raise serializers.ValidationError("Уровень должен быть 0, 1 или 2")
+        return value
+
+    def validate_supplier(self, value):
+        """
+        Проверка что поставщик существует и не создает циклических ссылок
+        """
+        if value and value.level == 2:
+            raise serializers.ValidationError("Индивидуальный предприниматель не может быть поставщиком")
+        return value

@@ -1,22 +1,22 @@
-{% extends 'base.html' %}
+{% extends 'users/base.html' %}
 {% load static %}
 
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-lg-10">
-        <div class="card border-0 shadow-lg" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border: 1px solid #007bff !important;">
+        <div class="card border-0 shadow-lg">
             <div class="card-body p-5">
                 <div class="text-center mb-4">
                     <div style="font-size: 3rem; margin-bottom: 1rem;">👤</div>
-                    <h2 class="text-white mb-2">Редактирование профиля</h2>
-                    <p class="text-light">Настройте вашу учетную запись To Ze Moon</p>
+                    <h2 class="text-dark mb-2">Редактирование профиля</h2>
+                    <p class="text-muted">Настройте вашу учетную запись ElectroHub</p>
                 </div>
 
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="row">
                         <div class="col-md-4 text-center">
-                            <div class="card border-0" style="background: #2d2d44;">
+                            <div class="card border-0 bg-light">
                                 <div class="card-body">
                                     <label for="id_avatar" class="d-block mb-3 cursor-pointer">
                                         <img id="avatar-preview"
@@ -35,33 +35,45 @@
                         <div class="col-md-8">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="id_first_name" class="form-label text-light">Имя</label>
+                                    <label for="id_first_name" class="form-label">Имя</label>
                                     <input type="text" name="first_name" class="form-control" id="id_first_name"
-                                           value="{{ form.instance.first_name }}" style="background: #2d2d44; border: 1px solid #444; color: white;">
+                                           value="{{ form.instance.first_name }}">
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="id_last_name" class="form-label text-light">Фамилия</label>
+                                    <label for="id_last_name" class="form-label">Фамилия</label>
                                     <input type="text" name="last_name" class="form-control" id="id_last_name"
-                                           value="{{ form.instance.last_name }}" style="background: #2d2d44; border: 1px solid #444; color: white;">
+                                           value="{{ form.instance.last_name }}">
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="id_email" class="form-label text-light">Email</label>
+                                <label for="id_email" class="form-label">Email</label>
                                 <input type="email" name="email" class="form-control" id="id_email"
-                                       value="{{ form.instance.email }}" style="background: #2d2d44; border: 1px solid #444; color: white;">
+                                       value="{{ form.instance.email }}" readonly style="background-color: #e9ecef;">
+                                <div class="form-text text-muted">Email нельзя изменить</div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="id_phone" class="form-label text-light">Телефон</label>
+                                <label for="id_phone" class="form-label">Телефон</label>
                                 <input type="tel" name="phone" class="form-control" id="id_phone"
-                                       value="{{ form.instance.phone }}" style="background: #2d2d44; border: 1px solid #444; color: white;">
+                                       value="{{ form.instance.phone }}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="id_country" class="form-label">Страна</label>
+                                <input type="text" name="country" class="form-control" id="id_country"
+                                       value="{{ form.instance.country }}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="id_city" class="form-label">Город</label>
+                                <input type="text" name="city" class="form-control" id="id_city"
+                                       value="{{ form.instance.city }}">
                             </div>
 
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
                                 <a href="/" class="btn btn-secondary me-2">Отмена</a>
-                                <button type="submit" class="btn btn-success px-4"
-                                        style="background: linear-gradient(45deg, #00C853, #007bff); border: none;">
+                                <button type="submit" class="btn btn-primary px-4">
                                     Сохранить изменения
                                 </button>
                             </div>
@@ -101,18 +113,6 @@ document.addEventListener('DOMContentLoaded', function() {
 <style>
     .cursor-pointer {
         cursor: pointer;
-    }
-
-    .form-control {
-        background: #2d2d44 !important;
-        border: 1px solid #444 !important;
-        color: white !important;
-    }
-
-    .form-control:focus {
-        background: #2d2d44 !important;
-        border-color: #007bff !important;
-        color: white !important;
     }
 </style>
 {% endblock %}

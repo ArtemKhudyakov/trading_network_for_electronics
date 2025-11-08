@@ -1,0 +1,244 @@
+[
+  {
+    "model": "trading_network.product",
+    "pk": 1,
+    "fields": {
+      "name": "Смартфон Samsung",
+      "model": "Galaxy S24",
+      "release_date": "2024-01-15"
+    }
+  },
+  {
+    "model": "trading_network.product",
+    "pk": 2,
+    "fields": {
+      "name": "Смартфон Apple",
+      "model": "iPhone 15 Pro",
+      "release_date": "2023-09-22"
+    }
+  },
+  {
+    "model": "trading_network.product",
+    "pk": 3,
+    "fields": {
+      "name": "Ноутбук Lenovo",
+      "model": "ThinkPad X1 Carbon",
+      "release_date": "2024-03-10"
+    }
+  },
+  {
+    "model": "trading_network.product",
+    "pk": 4,
+    "fields": {
+      "name": "Ноутбук Apple",
+      "model": "MacBook Pro 16",
+      "release_date": "2023-10-30"
+    }
+  },
+  {
+    "model": "trading_network.product",
+    "pk": 5,
+    "fields": {
+      "name": "Планшет Samsung",
+      "model": "Galaxy Tab S9",
+      "release_date": "2023-08-15"
+    }
+  },
+  {
+    "model": "trading_network.product",
+    "pk": 6,
+    "fields": {
+      "name": "Наушники Sony",
+      "model": "WH-1000XM5",
+      "release_date": "2024-02-20"
+    }
+  },
+  {
+    "model": "trading_network.product",
+    "pk": 7,
+    "fields": {
+      "name": "Смарт-часы Apple",
+      "model": "Watch Series 9",
+      "release_date": "2023-09-12"
+    }
+  },
+  {
+    "model": "trading_network.product",
+    "pk": 8,
+    "fields": {
+      "name": "Фитнес-браслет Xiaomi",
+      "model": "Mi Band 8",
+      "release_date": "2023-11-05"
+    }
+  },
+  {
+    "model": "trading_network.networknode",
+    "pk": 1,
+    "fields": {
+      "name": "Завод Samsung в Калуге",
+      "level": 0,
+      "email": "samsung-kaluga@electrohub.ru",
+      "country": "Россия",
+      "city": "Калуга",
+      "street": "Промышленная",
+      "house_number": "15",
+      "debt": "0.00",
+      "created_at": "2024-01-10T10:00:00Z",
+      "supplier": null,
+      "products": [1, 5]
+    }
+  },
+  {
+    "model": "trading_network.networknode",
+    "pk": 2,
+    "fields": {
+      "name": "Завод Apple в Санкт-Петербурге",
+      "level": 0,
+      "email": "apple-spb@electrohub.ru",
+      "country": "Россия",
+      "city": "Санкт-Петербург",
+      "street": "Технологическая",
+      "house_number": "8",
+      "debt": "0.00",
+      "created_at": "2024-01-12T09:30:00Z",
+      "supplier": null,
+      "products": [2, 4, 7]
+    }
+  },
+  {
+    "model": "trading_network.networknode",
+    "pk": 3,
+    "fields": {
+      "name": "Завод электроники Москва",
+      "level": 0,
+      "email": "factory-moscow@electrohub.ru",
+      "country": "Россия",
+      "city": "Москва",
+      "street": "Заводской проезд",
+      "house_number": "25",
+      "debt": "0.00",
+      "created_at": "2024-01-15T11:00:00Z",
+      "supplier": null,
+      "products": [3, 6, 8]
+    }
+  },
+  {
+    "model": "trading_network.networknode",
+    "pk": 4,
+    "fields": {
+      "name": "Электроник Центр Москва",
+      "level": 1,
+      "email": "center-moscow@electrohub.ru",
+      "country": "Россия",
+      "city": "Москва",
+      "street": "Тверская",
+      "house_number": "12",
+      "debt": "150000.50",
+      "created_at": "2024-02-01T14:20:00Z",
+      "supplier": 1,
+      "products": [1, 5, 6]
+    }
+  },
+  {
+    "model": "trading_network.networknode",
+    "pk": 5,
+    "fields": {
+      "name": "Гаджет Маркет СПб",
+      "level": 1,
+      "email": "gadget-spb@electrohub.ru",
+      "country": "Россия",
+      "city": "Санкт-Петербург",
+      "street": "Невский проспект",
+      "house_number": "45",
+      "debt": "75000.00",
+      "created_at": "2024-02-05T16:45:00Z",
+      "supplier": 2,
+      "products": [2, 4, 7]
+    }
+  },
+  {
+    "model": "trading_network.networknode",
+    "pk": 6,
+    "fields": {
+      "name": "Техно Мир Екатеринбург",
+      "level": 1,
+      "email": "techno-ekb@electrohub.ru",
+      "country": "Россия",
+      "city": "Екатеринбург",
+      "street": "Ленина",
+      "house_number": "78",
+      "debt": "45000.75",
+      "created_at": "2024-02-10T10:15:00Z",
+      "supplier": 3,
+      "products": [3, 6, 8]
+    }
+  },
+  {
+    "model": "trading_network.networknode",
+    "pk": 7,
+    "fields": {
+      "name": "ИП Иванов А.С. Москва",
+      "level": 2,
+      "email": "ip-ivanov@electrohub.ru",
+      "country": "Россия",
+      "city": "Москва",
+      "street": "Арбат",
+      "house_number": "15А",
+      "debt": "25000.00",
+      "created_at": "2024-02-15T12:30:00Z",
+      "supplier": 4,
+      "products": [1, 5]
+    }
+  },
+  {
+    "model": "trading_network.networknode",
+    "pk": 8,
+    "fields": {
+      "name": "ИП Петрова М.И. СПб",
+      "level": 2,
+      "email": "ip-petrova@electrohub.ru",
+      "country": "Россия",
+      "city": "Санкт-Петербург",
+      "street": "Васильевский остров",
+      "house_number": "23",
+      "debt": "18000.50",
+      "created_at": "2024-02-20T15:00:00Z",
+      "supplier": 5,
+      "products": [2, 7]
+    }
+  },
+  {
+    "model": "trading_network.networknode",
+    "pk": 9,
+    "fields": {
+      "name": "ИП Сидоров П.В. Новосибирск",
+      "level": 2,
+      "email": "ip-sidorov@electrohub.ru",
+      "country": "Россия",
+      "city": "Новосибирск",
+      "street": "Красный проспект",
+      "house_number": "56",
+      "debt": "32000.25",
+      "created_at": "2024-02-25T11:45:00Z",
+      "supplier": 6,
+      "products": [3, 6, 8]
+    }
+  },
+  {
+    "model": "trading_network.networknode",
+    "pk": 10,
+    "fields": {
+      "name": "Техно Плаза Казань",
+      "level": 1,
+      "email": "techno-kazan@electrohub.ru",
+      "country": "Россия",
+      "city": "Казань",
+      "street": "Баумана",
+      "house_number": "34",
+      "debt": "55000.00",
+      "created_at": "2024-03-01T09:00:00Z",
+      "supplier": 1,
+      "products": [1, 5, 6]
+    }
+  }
+]

@@ -1,21 +1,21 @@
-{% extends 'base.html' %}
+{% extends 'users/base.html' %}
 
-{% block title %}Управление пользователями - To Ze Moon{% endblock %}
+{% block title %}Управление пользователями - ElectroHub{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="text-white">👥 Управление пользователями</h1>
-        <a href="/" class="btn btn-outline-light">На главную</a>
+        <h1 class="text-dark">👥 Управление пользователями</h1>
+        <a href="/" class="btn btn-outline-secondary">На главную</a>
     </div>
 
-    <div class="card border-0 shadow" style="background: #1a1a2e;">
-        <div class="card-header" style="background: #2d2d44; border-bottom: 1px solid #007bff;">
-            <h5 class="card-title mb-0 text-white">📊 Список пользователей</h5>
+    <div class="card border-0 shadow">
+        <div class="card-header bg-primary text-white">
+            <h5 class="card-title mb-0">📋 Список пользователей</h5>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-dark table-hover">
+                <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -67,24 +67,4 @@
         </div>
     </div>
 </div>
-
-<style>
-    .table-dark {
-        background: #1a1a2e;
-        color: white;
-    }
-
-    .table-dark th {
-        border-color: #444;
-        background: #2d2d44;
-    }
-
-    .table-dark td {
-        border-color: #444;
-    }
-
-    .table-hover tbody tr:hover {
-        background: #2d2d44;
-    }
-</style>
 {% endblock %}

@@ -1,9 +1,8 @@
+from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import FileExtensionValidator
-from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-
-from config import settings
+from django.conf import settings
 
 
 class User(AbstractUser):
@@ -20,6 +19,17 @@ class User(AbstractUser):
         verbose_name="email",
         help_text="Введите адрес электронной почты",
     )
+
+    organization = models.ForeignKey(
+        'trading_network.NetworkNode',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Организация",
+        help_text="Организация, к которой привязан пользователь",
+        related_name='employees'
+    )
+
     country = models.CharField(
         max_length=50,
         blank=True,
@@ -27,7 +37,6 @@ class User(AbstractUser):
         verbose_name="Страна",
         help_text="Введите страну",
     )
-
     city = models.CharField(
         max_length=50,
         blank=True,
@@ -35,14 +44,12 @@ class User(AbstractUser):
         verbose_name="Город",
         help_text="Введите город",
     )
-
     phone = PhoneNumberField(
         blank=True,
         null=True,
         verbose_name="Телефон",
         help_text="Введите номер телефона",
     )
-
     avatar = models.ImageField(
         upload_to="users/avatars",
         blank=True,
@@ -51,6 +58,7 @@ class User(AbstractUser):
         verbose_name="Аватар",
         help_text="Загрузите изображение аватара",
     )
+
     token = models.CharField(max_length=100, verbose_name="Токен", blank=True, null=True)
     is_verified = models.BooleanField(default=False, verbose_name="Подтвержден")
 
@@ -107,8 +115,3 @@ class TelegramUser(models.Model):
 
     def __str__(self):
         return f"{self.user.username} ({self.chat_id})"
-
-
-from django.db import models
-
-# Create your models here.

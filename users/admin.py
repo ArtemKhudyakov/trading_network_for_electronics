@@ -1,19 +1,17 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
-
 from .models import User
 
-
 class UserAdmin(BaseUserAdmin):
-    list_display = ("id", "username", "email", "role", "is_blocked", "is_staff", "is_superuser")
-    list_filter = ("role", "is_blocked", "is_staff", "is_superuser")
-    search_fields = ("username", "email")
+    list_display = ("id", "username", "email", "organization", "role", "is_blocked", "is_staff", "is_superuser")
+    list_filter = ("organization", "role", "is_blocked", "is_staff", "is_superuser")
+    search_fields = ("username", "email", "organization__name")
     ordering = ("username",)
 
     fieldsets = (
         (None, {"fields": ("username", "password")}),
-        (_("Personal info"), {"fields": ("email", "country", "phone", "avatar")}),
+        (_("Personal info"), {"fields": ("email", "organization", "country", "phone", "avatar")}),
         (_("Telegram settings"), {"fields": ("telegram_chat_id", "telegram_username", "telegram_notifications")}),
         (
             _("Permissions"),
@@ -38,7 +36,7 @@ class UserAdmin(BaseUserAdmin):
             None,
             {
                 "classes": ("wide",),
-                "fields": ("username", "email", "password1", "password2", "role"),
+                "fields": ("username", "email", "organization", "password1", "password2", "role"),
             },
         ),
     )
